@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const auth = require("../util/middleware/auth");
 const Message = require("../models/Message");
+const { BadRequest } = require("../util/errors");
 
 router.use(auth)
 
@@ -15,16 +16,23 @@ router.get("/chat/:chatId/messages", (req, res, next) => {
                 if (err) next(err)
                 else res.send(docs)
             })
+    } else {
+        next(new BadRequest("No chat id present"))
     }
 })
 
 router.get("/participants/:chatId", (req, res, next) => {
     const chat = req.params.chatId;
-    Message
-        .findOne({ _id: chat })
-        .sort({ timestamp: -1 })
-        .exec((err, docs) => {
-            if (err) next(err)
-            else res.send(docs)
-        })
+    if (chat) {
+        Message
+            .findOne({ _id: chat })
+            .sort({ timestamp: -1 })
+            .limit(1)
+            .exec((err, docs) => {
+                if (err) next(err)
+                else res.send(docs)
+            })
+    } else {
+        next(new BadRequest("No chat id present"))
+    }
 })

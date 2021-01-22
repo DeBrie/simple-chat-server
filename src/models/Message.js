@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = Schema({
+const Message = Schema({
     _id: Schema.ObjectId,
     src: Schema.ObjectId,
     dest: [Schema.ObjectId],
@@ -9,3 +9,4 @@ module.exports = Schema({
     content: String
 })
 
+module.exports = mongoose.model('Message', Message, 'messages')
