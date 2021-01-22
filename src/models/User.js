@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 let User = new Schema({
+    _id: Schema.ObjectId,
     username: {
         type: String,
         unique: true,
