@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const rfs = require('rotating-file-stream');
 const app = require("express")();
 const http = require('http');
+const errorHandler = require("./util/middleware/errors")
 
 const cors = require("cors")({});
 const helmet = require("helmet")();
