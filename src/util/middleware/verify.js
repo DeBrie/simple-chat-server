@@ -14,8 +14,8 @@ function verify(token) {
             User.findById(token.userId, function (err, user) {
                 if (err) reject({ ...failed, err })
                 if (!user) reject({ ...failed, message: 'Unknown user' })
-                var info = { scope: '*' };
-                res({ ...success, ...user });
+                const info = { scope: '*' };
+                res({ ...success, ...user, ...info });
             });
         });
     })

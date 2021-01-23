@@ -5,7 +5,7 @@ const { Unauthorised } = require("../util/errors");
 
 router.use(auth)
 
-router.get("/contacts", (req, res, next) => {
+router.get("/", (req, res, next) => {
     const currentUser = req.user;
     if (currentUser) {
         User
@@ -22,7 +22,7 @@ router.get("/contacts", (req, res, next) => {
     }
 });
 
-router.post("/contacts/:newContact", (req, res, next) => {
+router.post("/:newContact", (req, res, next) => {
     const { user, params: { newContact } } = req;
     if (user) {
         User

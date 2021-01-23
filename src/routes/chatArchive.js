@@ -5,7 +5,7 @@ const { BadRequest } = require("../util/errors");
 
 router.use(auth)
 
-router.get("/chat/:chatId/messages", (req, res, next) => {
+router.get("/:chatId/messages", (req, res, next) => {
     const chat = req.params.chatId;
     const { fromTime = 0, toTime = Date.now() } = req.query;
     if (chat && fromTime != null && toTime) {

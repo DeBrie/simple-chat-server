@@ -17,6 +17,10 @@ const json = require('body-parser').json()
 const handleWs = require("./websocket")
 const verify = require("./util/middleware/verify")
 
+
+const contacts = require('./routes/contacts');
+const chatArchive = require('./routes/chatArchive')
+
 module.exports = () => {
 	const passport = require('passport');
 	require("../util/passport");
@@ -45,7 +49,8 @@ module.exports = () => {
 		.use(passport.initialize())
 		.use(morgan("short"))
 		.use(morgan("common", { stream: accessLogStream }))
-		.use("/register", stdRoutes)
+		.use('/contacts', contacts)
+		.use('/chat', chatArchive)
 		.use(errorHandler)
 
 	const server = http.createServer(app);
@@ -54,7 +59,7 @@ module.exports = () => {
 	server.on('upgrade', (request, socket, head) => {
 		verify(request.headers.Authorization,).then((res) => {
 			wsServer.handleUpgrade(request, socket, head, socket => {
-				wsServer.emit('connection', socket, request);
+				wsServer.emit('connection', { ...res, socket }, request);
 			});
 		}, (err) => {
 			socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
