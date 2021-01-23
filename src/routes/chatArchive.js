@@ -36,3 +36,5 @@ router.get("/participants/:chatId", (req, res, next) => {
         next(new BadRequest("No chat id present"))
     }
 })
+
+module.exports = router;

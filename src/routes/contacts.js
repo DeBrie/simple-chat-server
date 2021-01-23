@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const auth = require("../util/middleware/auth");
+const auth = require('../util/middleware/auth');
 const User = require("../models/User");
 const { Unauthorised } = require("../util/errors");
 
@@ -38,3 +38,5 @@ router.post("/:newContact", (req, res, next) => {
         next(new Unauthorised("You are not logged in, somehow... if you're seeing this something gone wrong, just ignore this...."))
     }
 })
+
+module.exports = router;

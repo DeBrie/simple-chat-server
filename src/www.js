@@ -2,8 +2,6 @@ require("dotenv").config()
 const apiName = process.env.API_NAME || "Chat-API";
 const baseRef = process.env.LOG_LOCATION || "access_logs";
 const serverPort = process.env.AUTH_PORT || 13000;
-
-const stdRoutes = require("./routes/std_routes")
 const morgan = require("morgan");
 const rfs = require('rotating-file-stream');
 const app = require("express")();
@@ -16,14 +14,14 @@ const json = require('body-parser').json()
 
 const handleWs = require("./websocket")
 const verify = require("./util/middleware/verify")
-
+const ws = require('ws')
 
 const contacts = require('./routes/contacts');
 const chatArchive = require('./routes/chatArchive')
 
 module.exports = () => {
 	const passport = require('passport');
-	require("../util/passport");
+	require("./util/passport");
 
 	const wsServer = new ws.Server({ noServer: true });
 
