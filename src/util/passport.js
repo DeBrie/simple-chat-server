@@ -3,9 +3,9 @@ const BasicStrategy = require('passport-http').BasicStrategy;
 const ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 
-const User = require('./mongoose/models/v1/user');
-const Client = require('./mongoose/models/v1/client');
-const AccessToken = require('./mongoose/models/access_token');
+const User = require('../models/User');
+const Client = require('../models/Client');
+const AccessToken = require('../models/AccessToken');
 
 passport.use(new BasicStrategy(
     function (username, password, done) {

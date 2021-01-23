@@ -25,7 +25,7 @@ router.get("/participants/:chatId", (req, res, next) => {
     const chat = req.params.chatId;
     if (chat) {
         Message
-            .findOne({ _id: chat })
+            .findById(chat)
             .sort({ timestamp: -1 })
             .limit(1)
             .exec((err, docs) => {
