@@ -17,7 +17,9 @@ module.exports = ({ socket, user }) => {
     }
     socket.on("connect", (connect) => {
         console.log("Connecting websocket to user: " + user);
-        sub(user._id);
+        sub(user._id, (message) => {
+            socket.send(message)
+        });
     })
     socket.on("message", (message) => {
         let msg;
