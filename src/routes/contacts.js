@@ -17,8 +17,7 @@ router.get("/", (req, res, next) => {
                     else res.send(docs)
                 })
     } else {
-        //fuck knows how the if could fail, probably pointless having it tbh
-        next(new Unauthorised("You are not logged in, somehow... if you're seeing this something gone wrong, just ignore this...."))
+        next(new Unauthorised("You are not logged in"))
     }
 });
 
@@ -34,8 +33,7 @@ router.post("/:newContact", (req, res, next) => {
                     else res.send(docs)
                 })
     } else {
-        //fuck knows how the if could fail, probably pointless having it tbh
-        next(new Unauthorised("You are not logged in, somehow... if you're seeing this something gone wrong, just ignore this...."))
+        next(new Unauthorised("You are not logged in"))
     }
 })
 
