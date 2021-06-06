@@ -1,7 +1,7 @@
 require("dotenv").config()
 const apiName = process.env.API_NAME || "Chat-API";
 const baseRef = process.env.LOG_LOCATION || "access_logs";
-const serverPort = process.env.AUTH_PORT || 8080;
+const serverPort = process.env.AUTH_PORT || 5000;
 const morgan = require("morgan");
 const rfs = require('rotating-file-stream');
 const app = require("express")();
